@@ -10,17 +10,15 @@ router.get("/", async (req, res) => {
       size: 2,
     };
 
-    if (req.query.page && req.query.page > 0) {
-      obj.page = req.query.page - 1;
-    }
+    // if (req.query.page && req.query.page > 0) {
+    //   obj.page = req.query.page - 1;
+    // }
 
-    if (req.query.size && req.query.size > 0) {
-      obj.size = req.query.size;
-    }
+    // if (req.query.size && req.query.size > 0) {
+    //   obj.size = req.query.size;
+    // }
 
-    let record = User.find()
-      .limit(obj.size)
-      .skip(obj.page * obj.size);
+    let record = User.find().limit(obj.size).skip(1);
     let count = User.find().count();
     const promises = [record, count];
     let data = await Promise.all(promises);
