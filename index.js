@@ -1,13 +1,15 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const User = require("./routes/User");
 
-const PORT = 3500;
+dotenv.config();
+const PORT = process.env.PORT || 3500;
 const app = express();
 
 mongoose
-  .connect(`mongodb+srv://admin:admin@db1.cl02taj.mongodb.net/DBEX1`)
+  .connect(`${process.env.MONGO_URL}`)
   .then(() => {
     console.log("Database connection successful");
   })
